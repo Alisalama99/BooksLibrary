@@ -6,17 +6,27 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AngularApp", policy =>
     {
-        policy.WithOrigins("http://localhost:4200")
+        policy.WithOrigins("http://localhost:4200",     "https://bookslibrary.pages.dev"
+)
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(
-        builder.Configuration.GetConnectionString("DefaultConnection")
-    )
-);
+{
+    var connectionString = builder.Configuration
+        .GetConnectionString("DefaultConnection");
+
+    if (builder.Configuration.GetValue<bool>("UseSqlite"))
+    {
+        options.UseSqlite(connectionString);
+    }
+    else
+    {
+        options.UseSqlServer(connectionString);
+    }
+});
 
 var app = builder.Build();
 app.UseCors("AngularApp");
