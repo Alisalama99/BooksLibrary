@@ -1,0 +1,90 @@
+.book-card {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 15px;
+  max-width: 400px;
+  transition: transform 0.2s ease;
+}
+.book-card:hover {
+  transform: translateY(-4px);
+}
+.book-card h3 {
+  margin-top: 0;
+  color: #2563eb;
+}
+
+.book-card p {
+  color: #444;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.book-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.edit-btn:hover {
+  background-color: #2563eb;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: red;
+  color: white;
+}
+
+.form-input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin: 3px;
+}
+
+.form-input:focus {
+  border-color: #2563eb;
+  background-color: lightblue;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background-color: #1e293b;
+  padding: 20px;
+}
+.navbar a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+.nav-link {
+  display: flex;
+  gap: 20px;
+}
+.navbar-brand {
+  color: #93c5fd;
+  font-size: 22px;
+  font-weight: bold;
+}
+.navbar a:hover {
+  color: yellow;
+}

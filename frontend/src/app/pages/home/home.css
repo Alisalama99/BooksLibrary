@@ -1,0 +1,108 @@
+.book-card {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 15px;
+  max-width: 400px;
+  transition: transform 0.2s ease;
+}
+.book-card:hover {
+  transform: translateY(-4px);
+}
+.book-card h3 {
+  margin-top: 0;
+  color: #2563eb;
+}
+
+.book-card p {
+  color: #444;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.book-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.edit-btn:hover {
+  background-color: #1d4ed8;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #b91c1c;
+  color: white;
+}
+
+.form-input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin: 3px;
+}
+
+.form-input:focus {
+  border-color: #2563eb;
+  background-color: lightblue;
+}
+
+.save-btn {
+  background-color: #2563eb;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+.save-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 30px auto;
+}
+
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+.home-container h1 {
+  font-size: 36px;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+.home-container > p {
+  color: #64748b;
+  font-size: 16px;
+}

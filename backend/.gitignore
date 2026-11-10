@@ -1,0 +1,11 @@
+# .NET build output
+bin/
+obj/
+
+# Local SQLite databases
+*.db
+*.db-shm
+*.db-wal
+
+# Local secrets
+appsettings.Development.json

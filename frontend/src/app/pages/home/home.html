@@ -1,0 +1,65 @@
+<div class="home-container">
+  <h1>📚 My Books Library</h1>
+
+  <p>Angular + ASP.NET Core + SQLite</p>
+
+  <p>Books loaded: {{ books().length }}</p>
+
+  <input
+    type="text"
+    placeholder="🔍 Search books..."
+    class="form-input"
+    [ngModel]="searchTerm()"
+    (ngModelChange)="searchTerm.set($event)"
+    name="search"
+    autocomplete="off"
+  />
+
+  <form class="book-form">
+    <input
+      type="text"
+      placeholder="Book Title"
+      [(ngModel)]="title"
+      name="title"
+      class="form-input"
+      required
+    />
+    <input
+      type="text"
+      placeholder="Author"
+      [(ngModel)]="author"
+      name="author"
+      class="form-input"
+      required
+    />
+    <input
+      type="number"
+      placeholder="Price"
+      [(ngModel)]="price"
+      name="price"
+      class="form-input"
+      required
+    />
+    <button type="button" (click)="saveBook()" class="save-btn">
+      {{ editingBookId === null ? 'Add Book' : 'Save Changes' }}
+    </button>
+  </form>
+
+  <section class="books-grid">
+    @for (book of filteredBooks(); track book.id) {
+      <div class="book-card">
+        <h3>{{ book.title }}</h3>
+        <p>Author: {{ book.author }}</p>
+        <p>Price: ${{ book.price }}</p>
+        <button type="button" (click)="deleteBook(book.id)" class="book-btn delete-btn">
+          Delete
+        </button>
+        <button type="button" (click)="editBook(book)" class="book-btn edit-btn">Edit</button>
+      </div>
+    }
+  </section>
+
+  @if (filteredBooks().length === 0) {
+    <p>No books Found</p>
+  }
+</div>
