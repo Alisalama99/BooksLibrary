@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:5168/books', // Temporary placeholder
+  apiUrl: 'https://bookslibrary-api.runasp.net/books', // Temporary placeholder
 };
