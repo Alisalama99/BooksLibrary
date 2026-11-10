@@ -1,33 +1,68 @@
 # 📚 Books Library
 
-Books Library is a full-stack web application built with Angular, ASP.NET Core, Entity Framework Core, and SQLite. It provides a simple, responsive interface for managing a personal book collection.
+A full-stack web application for managing a personal book collection, built with **Angular, ASP.NET Core 10, Entity Framework Core, and Microsoft SQL Server**.
 
-Users can add new books, browse their collection, update existing records, delete books, and search instantly by title or author. The application connects an Angular frontend to an ASP.NET Core REST API, with Entity Framework Core handling data persistence in a SQLite database.
+Books Library features a responsive interface for browsing, searching, adding, editing, and deleting books. It connects an Angular frontend to an ASP.NET Core REST API, with Entity Framework Core handling database operations.
+
+The application is publicly deployed, using **Cloudflare Pages** for the frontend and **MonsterASP.NET** for the backend and SQL Server database.
+
+## 🌐 Live Demo
+
+- **Live Website:** https://bookslibrary.pages.dev
+- **Live REST API:** https://bookslibrary-api.runasp.net/books
+- **GitHub Repository:** https://github.com/Alisalama99/BooksLibrary
 
 ## ✨ Features
 
-- Create, view, update, and delete books
+- Create, view, update, and delete books (CRUD)
 - Search books by title or author
+- Filter books by price and sort results
+- Backend pagination support
 - Responsive book cards and forms
-- Multi-page navigation with Angular Router
-- Frontend registration form with basic validation (demonstration only; no account creation or authentication)
-- Persistent storage using SQLite
+- Multi-page navigation using Angular Router
+- Form validation for book information
+- Frontend registration form with basic validation (demonstration only)
+- Persistent storage using Entity Framework Core
+- Separate development and production database configurations
+- Publicly deployed frontend and backend connected through a REST API
 
 ## 🛠️ Tech Stack
 
-**Frontend:** Angular, TypeScript, HTML, CSS
+| Layer                      | Technologies                     |
+| -------------------------- | -------------------------------- |
+| Frontend                   | Angular, TypeScript, HTML, CSS   |
+| Backend                    | ASP.NET Core 10 Minimal APIs, C# |
+| ORM                        | Entity Framework Core 10         |
+| Development Database       | SQLite                           |
+| Production Database        | Microsoft SQL Server             |
+| Frontend Hosting           | Cloudflare Pages                 |
+| Backend & Database Hosting | MonsterASP.NET                   |
+| Version Control            | Git, GitHub                      |
 
-**Backend:** ASP.NET Core Minimal APIs, C#
+## 🏗️ Application Architecture
 
-**Database:** SQLite, Entity Framework Core
+```text
+Angular Frontend
+  Cloudflare Pages
+        |
+        | HTTPS / REST API
+        v
+ASP.NET Core 10 Backend
+  MonsterASP.NET
+        |
+        | Entity Framework Core
+        v
+Microsoft SQL Server
+  MonsterASP.NET
+```
 
-**Version Control:** Git and GitHub
+For local development, the backend uses SQLite instead of SQL Server.
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-Make sure the following tools are installed:
+Install the following tools:
 
 - Node.js and npm
 - Angular CLI
@@ -52,13 +87,21 @@ dotnet ef database update
 dotnet run
 ```
 
-The API runs at `http://localhost:5168` when using the project's current development configuration.
+The backend uses **SQLite by default** for local development.
 
-The database is created locally using EF Core migrations. No existing book data is required.
+The local database is created using the existing Entity Framework Core migration.
+
+With the current development configuration, the API runs at:
+
+`http://localhost:5168`
+
+Example endpoint:
+
+`http://localhost:5168/books`
 
 ### 3. Set Up the Frontend
 
-Open a **second terminal** from the repository's root directory:
+Open a second terminal from the repository root:
 
 ```bash
 cd frontend
@@ -66,12 +109,81 @@ npm install
 npm start
 ```
 
-Open `http://localhost:4200` in your browser.
+Visit:
+
+`http://localhost:4200`
+
+The development frontend should connect to the locally running ASP.NET Core API.
 
 ### 4. Use the Application
 
-You can now add, edit, delete, and search books through the Angular interface. Changes are saved to the local SQLite database.
+You can now add, edit, delete, browse, and search books.
 
-### Note About Registration
+Changes are saved to your local SQLite database and remain available after refreshing the page.
 
-The Register page demonstrates frontend form validation only. It does not create user accounts or implement authentication.
+## ⚙️ Environment Configuration
+
+The application uses separate configurations for development and production.
+
+**Development**
+
+- Angular connects to the local ASP.NET Core API.
+- ASP.NET Core uses SQLite.
+- The database is created through EF Core migrations.
+
+**Production**
+
+- Angular connects to the deployed HTTPS API.
+- ASP.NET Core uses Microsoft SQL Server.
+- The SQL Server connection string is configured privately through hosting environment variables.
+
+Sensitive credentials are not stored in the repository.
+
+**Note:** The initial production SQL Server table was created manually. SQL Server migration tracking has not yet been established, so the existing SQLite migration should not be applied directly to the production database.
+
+## 🔌 REST API Endpoints
+
+| Method | Endpoint      | Description                                                    |
+| ------ | ------------- | -------------------------------------------------------------- |
+| GET    | `/books`      | Retrieve books, with optional filters, sorting, and pagination |
+| GET    | `/books/{id}` | Retrieve a book by ID                                          |
+| POST   | `/books`      | Create a new book                                              |
+| PUT    | `/books/{id}` | Update an existing book                                        |
+| DELETE | `/books/{id}` | Delete a book                                                  |
+
+Example book JSON:
+
+```json
+{
+  "title": "JoJo's Bizarre Adventure: Stardust Crusaders",
+  "author": "Hirohiko Araki",
+  "price": 19.99
+}
+```
+
+## 🔐 Authentication Note
+
+The Register page is a frontend demonstration of form validation.
+
+It does **not** create user accounts or implement authentication or authorization.
+
+The book management API is currently public and does not require user login.
+
+## 📈 Future Improvements
+
+- Implement user authentication and authorization
+- Add personal book collections for registered users
+- Establish dedicated SQL Server EF Core migrations
+- Add automated tests
+- Improve production error handling and monitoring
+- Add automated deployment checks
+
+## 👨‍💻 About the Project
+
+Books Library was developed as a hands-on full-stack project to practice building and deploying a complete web application.
+
+It demonstrates frontend development with Angular, REST API development with ASP.NET Core, database integration through Entity Framework Core, Git-based version control, and deployment to cloud hosting platforms.
+
+---
+
+Built with Angular, ASP
